@@ -1,3 +1,4 @@
+//название пакета долдно быть org.lesson3.home.accuweather.location, также в остальных классах оно не верное
 package autoTest.accuweather.location;
 
 import autoTest.accuweather.AbstractAccuweatherTest;
