@@ -1,7 +1,7 @@
-package autoTest.accuweather.location;
+package org.lesson3.home.accuweather.location;
 
-import autoTest.accuweather.AbstractAccuweatherTest;
-import autoTest.accuweather.locations.autocomplete.AutocompleteSearch;
+import org.lesson3.home.accuweather.AbstractAccuweatherTest;
+import org.lesson3.home.accuweather.locations.autocomplete.AutocompleteSearch;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
