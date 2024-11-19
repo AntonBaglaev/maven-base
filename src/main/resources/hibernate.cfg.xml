@@ -5,16 +5,26 @@
 <hibernate-configuration>
     <session-factory>
 
+<!--        <property name="connection.driver_class">org.sqlite.JDBC</property>-->
+<!--        <property name="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</property>-->
+<!--        <property name="connection.url">jdbc:sqlite:demo.db</property>-->
+<!--        <mapping class="org.lesson4.seminar.CourierInfoEntity"/>-->
+<!--        <mapping class="org.lesson4.seminar.CustomersEntity"/>-->
+<!--        <mapping class="org.lesson4.seminar.DeliveryEntity"/>-->
+<!--        <mapping class="org.lesson4.seminar.OrdersEntity"/>-->
+<!--        <mapping class="org.lesson4.seminar.OrdersProductsEntity"/>-->
+<!--        <mapping class="org.lesson4.seminar.ProductsEntity"/>-->
+
         <property name="connection.driver_class">org.sqlite.JDBC</property>
         <property name="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</property>
-
-        <property name="connection.url">jdbc:sqlite:demo.db</property>
-        <mapping class="org.lesson4.seminar.CourierInfoEntity"/>
-        <mapping class="org.lesson4.seminar.CustomersEntity"/>
-        <mapping class="org.lesson4.seminar.DeliveryEntity"/>
-        <mapping class="org.lesson4.seminar.OrdersEntity"/>
-        <mapping class="org.lesson4.seminar.OrdersProductsEntity"/>
-        <mapping class="org.lesson4.seminar.ProductsEntity"/>
+        <property name="connection.url">jdbc:sqlite:homework.db</property>
+        <mapping class="org.lesson4.home.CourierInfoEntity"/>
+        <mapping class="org.lesson4.home.CustomersEntity"/>
+        <mapping class="org.lesson4.home.DeliveryEntity"/>
+        <mapping class="org.lesson4.home.OrdersEntity"/>
+        <mapping class="org.lesson4.home.OrdersProductsEntity"/>
+        <mapping class="org.lesson4.home.OrdersProductsEntityPK"/>
+        <mapping class="org.lesson4.home.ProductsEntity"/>
 
     </session-factory>
 </hibernate-configuration>
