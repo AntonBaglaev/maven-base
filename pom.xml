@@ -17,12 +17,14 @@
       <assured.version>5.3.0</assured.version>
       <jackson.version>2.15.0</jackson.version>
       <sql.version>3.42.0.0</sql.version>
-      <hibernate-version>5.4.0.Final</hibernate-version>
+      <hibernate-version>5.0.1.Final</hibernate-version>
       <flyway.version>8.5.13</flyway.version>
       <wiremock.version>1.58</wiremock.version>
       <mockito.version>5.3.1</mockito.version>
-      <logback.version>1.3.5</logback.version>
+      <logback.version>1.4.12</logback.version>
       <slf4j.version>2.0.4</slf4j.version>
+      <allure.junit.version>2.22.1</allure.junit.version>
+      <aspectj.version>1.8.10</aspectj.version>
   </properties>
 
   <dependencies>
@@ -65,6 +67,7 @@
           <artifactId>hibernate-core</artifactId>
           <version>${hibernate-version}</version>
       </dependency>
+
       <dependency>
           <groupId>org.hibernate</groupId>
           <artifactId>hibernate-entitymanager</artifactId>
@@ -108,6 +111,11 @@
           <artifactId>logback-classic</artifactId>
           <version>${logback.version}</version>
       </dependency>
+      <dependency>
+          <groupId>io.qameta.allure</groupId>
+          <artifactId>allure-junit5</artifactId>
+          <version>${allure.junit.version}</version>
+      </dependency>
   </dependencies>
 
     <build>
@@ -122,11 +130,42 @@
                 </configuration>
             </plugin>
             <!-- Plugin для запуска тестовых классов - т.е. запуск тестов -->
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>${surefire.version}</version>-->
+<!--            </plugin>-->
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.version}</version>
+                <version>2.21.0</version>
+                <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <systemProperties>
+                        <property>
+                            <name>junit.jupiter.extensions.autodetection.enabled</name>
+                            <value>true</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.2.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
+
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
@@ -142,15 +181,29 @@
                     <locations>filesystem:db/home/migration</locations>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version>
+                <configuration>
+                    <!-- На момент написания лекции соответствующий архив не доступен,
+                    закомментируйте строку-->
+                    <!--<reportVersion>2.4.1</reportVersion>-->
+                    <!-- Добавим адрес директории для генератора отчета -->
+                    <buildDirectory>C:\WORK\java-test-base\maven-base</buildDirectory>
+                </configuration>
+            </plugin>
         </plugins>
 
     </build>
   <!-- Репозитории -->
   <repositories>
     <repository>
-      <id>mvnrepository</id>
+      <id>repository</id>
       <url>https://mvnrepository.com/</url>
     </repository>
   </repositories>
+
+
 
 </project>
